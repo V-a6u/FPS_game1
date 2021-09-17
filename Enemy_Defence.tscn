@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Models/Enemy/Gestapo-0.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://Enemy.gd" type="Script" id=2]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 0.192157, 0.168627, 0.368627, 1 )
+metallic = 0.29
+metallic_texture_channel = 2
+
+[sub_resource type="CapsuleShape" id=2]
+radius = 0.5
+
+[node name="Enemy_defence" type="KinematicBody"]
+script = ExtResource( 2 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.670696, -0.865835, 0.183755 )
+mesh = ExtResource( 1 )
+material/0 = SubResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.0261664, 0.0529317, 0.0595929 )
+shape = SubResource( 2 )
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
